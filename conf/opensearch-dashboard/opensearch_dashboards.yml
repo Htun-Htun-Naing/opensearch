@@ -1,0 +1,21 @@
+server.name: os_dashboards
+server.host: "0.0.0.0"
+
+opensearch.username: kibanaserver
+opensearch.password: admin
+opensearch.requestHeadersWhitelist: [authorization, securitytenant]
+
+opensearch_security.multitenancy.enabled: true
+opensearch_security.multitenancy.tenants.preferred: [Private, Global]
+opensearch_security.readonly_mode.roles: [kibana_read_only]
+# Use this setting if you are running opensearch-dashboards without https
+opensearch_security.cookie.secure: false
+
+# Encrypt traffic between the browser and OpenSearch-Dashboards
+server.ssl.enabled: true
+server.ssl.certificate: "/usr/share/opensearch-dashboards/config/certificates/client.pem"
+server.ssl.key: "/usr/share/opensearch-dashboards/config/certificates/client-key.pem"
+
+# Encrypt traffic between OpenSearch-Dashboards and Opensearch
+opensearch.ssl.certificateAuthorities: ["/usr/share/opensearch-dashboards/config/certificates/root-ca.pem"]
+opensearch.ssl.verificationMode: full
